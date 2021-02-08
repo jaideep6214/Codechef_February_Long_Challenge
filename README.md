@@ -1,5 +1,6 @@
 # Codechef_February_Long_Challenge
-Question-1:You are given an integer N. Find the largest integer between 1 and 10 (inclusive) which divides N.
+
+# Question-1:You are given an integer N. Find the largest integer between 1 and 10 (inclusive) which divides N.
 
 Input
 The first and only line of the input contains a single integer N.
@@ -26,7 +27,7 @@ Example Output 2
 Explanation
 The divisors of 91 are 1,7,13,91, out of which only 1 and 7 are in the range [1,10]. Therefore, the answer is max(1,7)=7.
 
-Question-2:You are given a sequence A1,A2,…,AN. Find the maximum value of the expression |Ax−Ay|+|Ay−Az|+|Az−Ax| over all triples of pairwise distinct valid indices (x,y,z).
+# Question-2:You are given a sequence A1,A2,…,AN. Find the maximum value of the expression |Ax−Ay|+|Ay−Az|+|Az−Ax| over all triples of pairwise distinct valid indices (x,y,z).
 
 Input
 The first line of the input contains a single integer T denoting the number of test cases. The description of T test cases follows.
@@ -62,7 +63,7 @@ Example case 2: Since all values in the sequence are the same, the value of the 
 
 Example case 3: One optimal solution is x=1, y=2 and z=5, which gives |2−2|+|2−5|+|5−2|=0+3+3=6.
 
-Question-3: A time is a string in the format "HH:MM AM" or "HH:MM PM" (without quotes), where HH and MM are always two-digit numbers. A day starts at 12:00 AM and ends at 11:59 PM. You may refer here for understanding the 12-hour clock format.
+# Question-3: A time is a string in the format "HH:MM AM" or "HH:MM PM" (without quotes), where HH and MM are always two-digit numbers. A day starts at 12:00 AM and ends at 11:59 PM. You may refer here for understanding the 12-hour clock format.
 
 Chef has scheduled a meeting with his friends at a time P. He has N friends (numbered 1 through N); for each valid i, the i-th friend is available from a time Li to a time Ri (both inclusive). For each friend, can you help Chef find out if this friend will be able to attend the meeting? More formally, check if Li≤P≤Ri for each valid i.
 
@@ -108,3 +109,50 @@ Friend 2: 12:01 AM lies between 12:01 AM and 11:59 AM (between 00:01 and 11:59 i
 Friend 3: 12:01 AM does not lie between 12:30 AM and 12:30 PM (between 00:30 and 12:30 in the 24-hour clock format), so this friend will not be able to attend the meeting.
 Friend 4: 12:01 AM does not lie between 11:59 AM and 11:59 PM (between 11:59 and 23:59 in the 24-hour clock format).
 Example case 2: For friend 3, 04:12 PM lies between 04:12 PM and 04:12 PM (inclusive) and hence this friend will be able to attend the meeting.
+
+# Question-4: There are N frogs (numbered 1 through N) in a line. For each valid i, the i-th frog is initially at the position i, it has weight Wi, and whenever you hit its back, it jumps a distance Li to the right, i.e. its position increases by Li. The weights of the frogs are pairwise distinct.
+
+You can hit the back of each frog any number of times (possibly zero, not necessarily the same for all frogs) in any order. The frogs do not intefere with each other, so there can be any number of frogs at the same time at each position.
+
+Your task is to sort the frogs in the increasing order of weight using the smallest possible number of hits. In other words, after all the hits are performed, then for each pair of frogs (i,j) such that Wi<Wj, the position of the i-th frog should be strictly smaller than the position of the j-th frog. Find the smallest number of hits needed to achieve such a state.
+
+Input
+The first line of the input contains a single integer T denoting the number of test cases. The description of T test cases follows.
+The first line of each test case contains a single integer N.
+The second line contains N space-separated integers W1,W2,…,WN.
+The third line contains N space-separated integers L1,L2,…,LN.
+Output
+For each test case, print a single line containing one integer ― the smallest number of times you need to hit the backs of the frogs.
+
+Constraints
+1≤T≤2⋅104
+2≤N≤4
+1≤Wi≤N for each valid i
+1≤Li≤5 for each valid i
+no two frogs have the same weight
+Subtasks
+Subtask #1 (50 points):
+
+T=50
+N=2
+Subtask #2 (50 points): original constraints
+
+Example Input
+3
+3
+3 1 2
+1 4 5
+3
+3 2 1
+1 1 1
+4
+2 1 4 3
+4 1 2 4
+Example Output
+3
+6
+5
+Explanation
+Example case 1: We can hit the back of the first frog three times.
+
+Example case 2: We can hit the back of the first frog four times, then hit the back of the second frog two times.
