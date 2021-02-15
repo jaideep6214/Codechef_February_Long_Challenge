@@ -240,8 +240,61 @@ Explanation
 Example case 1: Since D=1 is divisible by 0 primes, Chef will write 0 and win the game in the first move.
 
 Example case 2: Chef must choose D between 1 and 5 inclusive, since D=6 is divisible by more than one prime. Then, Divyam can always choose 6−D, write 0 on the board and win the game.
+# Question-7:You are given a strictly increasing sequence of positive integers A1,A2,…,AN. It is also guaranteed that for each valid i, Ai+A1≥Ai+1.
 
-# Question-7:You are given a sequence of positive integers A1,A2,…,AN. You should answer Q queries. In each query:
+Alice and Bob want to play Q independent games using this sequence. Before they play these games, Alice should choose a positive integer G between 1 and M (inclusive). The rules of each game are as follows:
+
+There is a set S of positive integers representing allowed moves in this game. For each valid i, in the i-th game, this set is S={ALi,ALi+1,…,ARi} (in other words, given by a contiguous subsequence of A).
+The game is played with a single pile. Let's denote the number of objects in this pile by P. At the beginning of the game, P=G. In other words, Alice and Bob play all the games with the same initial number of objects that Alice chooses.
+The players alternate turns; Alice plays first.
+In each turn, the current player must choose a positive integer b from the set S such that b≤P and remove b objects from the pile, i.e. change P to P−b.
+When the current player cannot choose any such integer b, this player loses this game.
+Both players play optimally. You need to find the maximum number of games Alice can win if she chooses G optimally.
+
+Input
+The first line of the input contains a single integer T denoting the number of test cases. The description of T test cases follows.
+The first line of each test case contains three space-separated integers N, Q and M.
+The second line contains N space-separated integers A1,A2,…,AN.
+Q lines follow. For each valid i, the i-th of these lines contains two space-separated integers Li and Ri.
+Output
+For each test case, print a single line containing one integer ― the maximum number of games Alice can win.
+
+Constraints
+1≤T≤50
+1≤N,Q,M≤2⋅105
+1≤Ai≤108 for each valid i
+Ai+A1≥Ai+1>Ai for each valid i
+1≤Li≤Ri≤N for each valid i
+the sum of N over all test cases does not exceed 2⋅105
+the sum of Q over all test cases does not exceed 2⋅105
+the sum of M over all test cases does not exceed 2⋅105
+Subtasks
+Subtask #1 (5 points):
+
+N,Q,M≤400
+the sum of N over all test cases does not exceed 400
+the sum of Q over all test cases does not exceed 400
+the sum of M over all test cases does not exceed 400
+Subtask #2 (30 points):
+
+N,Q,M≤5,000
+the sum of N over all test cases does not exceed 5,000
+the sum of Q over all test cases does not exceed 5,000
+the sum of M over all test cases does not exceed 5,000
+Subtask #3 (65 points): original constraints
+
+Example Input
+1
+3 2 10
+2 3 4
+1 2
+2 3
+Example Output
+2
+Explanation
+Example case 1: The set of allowed moves in the first game is S={2,3} and in the second game, it is S={3,4}. If Alice chooses G=3, she can win both games.
+
+# Question-8:You are given a sequence of positive integers A1,A2,…,AN. You should answer Q queries. In each query:
 
 You are given a positive integer M.
 Consider all non-empty subsequences of A with length ≤M. Recall that a subsequence is any sequence that can be created by deleting zero or more elements without changing the order of the remaining elements.
@@ -275,3 +328,87 @@ Explanation
 In the first query, the answer is just the sum of elements of A (modulo 998,244,353), which is 1+3+5+2=11.
 
 In the second query, the answer is the sum of bitwise XORs for all subsequences with length 1 or 2, which is 1+3+5+2+(1⊕3)+(1⊕5)+(1⊕2)+(3⊕5)+(3⊕2)+(5⊕2)=34
+
+# Question-9: You are given a rooted tree with N nodes (numbered 1 through N; node 1 is the root). For each i (1≤i≤N−1), the parent of the node i+1 is pi.
+
+You need to answer Q queries. (Sounds quite familiar!) For each query, first, W tasks are given to node V. These tasks are processed in the tree in the following way:
+
+When a node receives a tasks and it has no children, all a tasks are executed by this node.
+Otherwise, i.e. if the node has K>0 children, where K is a divisor of a, then this node gives a/K of these tasks to each of its children. This process is performed recursively by each child on the tasks it receives.
+Otherwise, i.e. if the node has K>0 children, but K is not a divisor of a, all a tasks are ignored and none of this node's children receive any tasks.
+For each query, find the number of tasks that are not executed, i.e. end up ignored, possibly after passing down the tree.
+
+Input
+The first line of the input contains a single integer N.
+The second line contains N−1 space-separated integers p1,p2,…,pN−1.
+The third line contains a single integer Q.
+Q lines follow. Each of these lines contains two space-separated integers V and W describing a query.
+Output
+For each query, print a single line containing one integer ― the number of tasks that are not executed.
+
+Constraints
+1≤N,Q≤105
+1≤pi≤N for each valid i
+the graph described on the input is a tree
+1≤V≤N
+1≤W≤106
+Subtasks
+Subtask #1 (20 points): N≤100
+Subtask #2 (80 points): original constraints
+
+Example Input
+5
+1 1 2 2
+2
+1 10
+1 20
+Example Output
+5
+0
+# Question-10:There are $N$ points in a plane (numbered $1$ through $N$). For each valid $i$, the coordinates of the $i$-th point are $(X_i, Y_i)$. No three of these points are collinear. Let's denote a line segment between points $u$ and $v$ by $(u,v)$.
+
+You are given a Delaunay triangulation of those points, which consists of $M$ triangles (numbered $1$ through $M$). For each valid $i$, the vertices of the $i$-th triangle are the points $P_{i,1}, P_{i,2}, P_{i,3}$.
+
+You may perform the following operation any number of times (possibly zero):
+
+Flip diagonal segment $(u,v)$: If there is a convex quadrilateral that contains this segment as a diagonal and does not contain any points other than its vertices, erase this segment and draw a new segment corresponding to the other diagonal of this quadrilateral. (Note that some segments cannot be flipped. It can be proved that if such a quadrilateral exists, it is unique and the result is also a triangulation.)
+Then, you should perform the following operation some number of times:
+
+Remove a segment $(u,v)$ that is shared by two regions with finite areas. When it is removed, the number of regions decreases by one.
+A region is defined as a maximal set in the plane such that it does not contain any of the given points or currently existing segments and it is possible to move from each point in this set to any other point in this set without crossing any edge. Note that a region is not necessarily convex. Two regions share a line segment if it is possible to move from one of these regions to the other one by crossing only this segment.
+
+After performing all operations, there must be exactly $R$ regions with finite areas. Let $A_1, A_2, \ldots, A_R$ be these areas sorted in non-decreasing order. You are given the desired areas $B_1, B_2, \ldots, B_R$ of the regions, also sorted in non-decreasing order. Your goal is to make $\sum_{i=1}^R |B_i - 2\cdot A_i|$ as small as possible by performing operations. However, you may only perform up to $1,024$ operations of the first type; note that the number of operations of the second type must always be $M-R$.
+
+Input
+The first line of the input contains three space-separated integers $N$, $M$ and $R$.
+$N$ lines follow. For each valid $i$, the $i$-th of these lines contains two space-separated integers $X_i$ and $Y_i$.
+$M$ more lines follow. For each valid $i$, the $i$-th of these lines contains three space-separated integers $P_{i,1}$, $P_{i,2}$ and $P_{i,3}$.
+The last line contains $R$ space-separated integers $B_1, B_2, \ldots, B_R$.
+Output
+First, print a line containing a single integer $F$ ($F \leq 1024$) denoting the number of operations of the first type.
+Then, print $F$ lines. Each of these lines should contain two space-separated integers $u$ and $v$ denoting that you want to flip a diagonal segment $(u,v)$.
+Finally, print $M-R$ lines. Each of these lines should contain two space-separated integers $u$ and $v$ denoting that you want to remove a segment $(u,v)$.
+Example Input
+8 7 5
+0 11
+1 5
+2 12
+5 0
+10 12
+12 6
+13 5
+13 11
+1 2 3
+5 3 2
+8 5 6
+7 8 6
+4 7 6
+2 4 6
+5 2 6
+13 17 18 48 135
+Example Output
+2
+6 8
+2 5
+2 6
+6 7
